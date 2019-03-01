@@ -3,11 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-
-=======
-use App\Products;
->>>>>>> v3
 class ProductsController extends Controller
 {
     /**
@@ -17,13 +12,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        //
-=======
         //get 30 products from the database
         $product = Products::orderBy('created_at','DESC')->take(30)->paginate(15);
         return view('products/index')->with('products',$product);
->>>>>>> v3
     }
 
     /**
