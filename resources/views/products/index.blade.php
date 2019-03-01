@@ -16,6 +16,7 @@
                         <td>$item->description</td>
                         <td>$item->price</td>
                     @endforeach
+                    $products->links()
                 </table>
             @endif
         @endif
