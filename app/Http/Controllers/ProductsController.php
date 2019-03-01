@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Products;
 use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
@@ -13,7 +13,7 @@ class ProductsController extends Controller
     public function index()
     {
         //get 30 products from the database
-        $product = Products::orderBy('created_at','DESC')->take(30)->paginate(15);
+        $product = Products::take(30)->paginate(15);
         return view('products/index')->with('products',$product);
     }
 

@@ -2,23 +2,25 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 text-center">
         @if(isset($products))
-            @if(count($products) > 0)
-                <table class="table-responsive table-striped">
+            
+                <table class="table table-responsive table-striped">
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
                     </tr>
                     @foreach($products as $item)
-                        <td>$item->name</td>
-                        <td>$item->description</td>
-                        <td>$item->price</td>
+                    <tr>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->description }}</td>
+                        <td>{{ $item->price }}</td>
+                        </tr>
                     @endforeach
-                    $products->links()
                 </table>
-            @endif
+                {{ $products->links()}}
+           
         @endif
     </div>
 </div>
