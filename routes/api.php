@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('articles', 'ArticlesController@index'); // list all the articles
+Route::get('article/{id}','ArticlesController@show'); //get a single article using the article id
+Route::post('articles','ArticlesController@store');// save a new article based on the user request
+

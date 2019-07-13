@@ -1,12 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Products;
 use Illuminate\Http\Request;
-use App\customers;
-use Session;
-
-class CustomerController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +12,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        if($user->id !== 1){
-            $user->id = rand(0,9);
-            dd($user->id);
-        }
-        $customer = customers::all();
-
-        return view('customer/new_customer',compact('customer'));
+        //get 30 products from the database
+        $product = Products::take(30)->paginate(15);
+        return view('products/index')->with('products',$product);
     }
 
     /**
@@ -43,30 +35,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $this ->validate($request, [
-        'name'=>'required',
-        'email'=>'required',
-        'dob'=>'required',
-        'no_id'=>'required',
-        'gender'=>'required',
-        'phone'=>'required',
-        'location'=>'required',
-    ]);
-        $customer = new customers;
-        $customer->name=$request->get('name');
-        $customer->email=$request->get('email');
-        $customer->dob=$request->get('dob');
-        $customer->no_id=$request->get('no_id');
-        $customer->gender=$request->get('gender');
-        $customer->phone=$request->get('phone');
-        $customer->location=$request->get('location');
-        $customer->save();
-        Session::flash('message', 'Customer Registered Succesfully!');
-        Session::flash('alert-class', 'alert-success');
-        return redirect()->back();
+        //
     }
-    
 
     /**
      * Display the specified resource.
